@@ -1,0 +1,72 @@
+1.echo "Hello,World" -
+To send a text message to the standard output stream, use the echo command with a string argument enclosed in double quotes
+1.name="Productive"-
+a custom alias or function created by a user to chain together multiple Linux commands that perform a specific task designed to improve their productivity in the terminal.
+3.touch file.txt-
+Touch command can be used to create multiple numbers of files at the same time.a fundamental tool used primarily for creating empty files and updating
+4.ls -a-
+list all files and directories, including hidden ones.
+5.rm file1.txt- 
+permanently delete the file named file1.txt from the current directory.
+6.cp file1.txt file2.txt-
+copy the contents of file1.txt to file2.txt.
+cp → Stands for copy.
+file1.txt → The source file (the file to be copied).
+file2.txt → The destination file (the new copy).
+7.mv file.txt/path/to/directory/-
+is used to move the file file.txt to a specified directory.
+8.chmod 755 script.sh-
+is used to change the permissions of script.sh, allowing it to be executed by the owner and readable by others.
+9.grep "pattern" file.txt-
+grep → Global Regular Expression Print (search tool).
+"pattern" → The text or regular expression to search for.
+file.txt → The file where the search will be performed.
+10.kill PID-
+is used to terminate a process with the specified Process ID (PID).
+11.mkdir mydir && cd mydir && touch file.txt && echo "Hello, World!">file.txt && cat file.txt-
+mkdir-Create a new directory mydir.
+cd mydir-Changes the current working directory to mydir.
+touch file.txt-If file.txt does not exist, it will be created. If it exists, its timestamp will be updated.
+Write "Hello, World!" into file.txt
+echo "Hello, World!">file.txt -This overwrites any existing content in file.txt.
+ cat file.txt--Display the contents of file.txt
+12.ls -l | grep ".txt"-
+is used to list all .txt files in the current directory with detailed information.
+13.cat file1.txt file2.txt | sort | uniq-
+ Concatenates (cat) both files and outputs their content.
+(pipe) → Passes the combined output to the next command.
+sort → Sorts the lines alphabetically (required before using uniq). 
+uniq → Removes duplicate adjacent lines (works only on sorted input).
+14.ls -l | grep "^d"-is used to list only directories in the current directory.
+15.grep -r "pattern" /path/to/directory/
+-grep → Searches for a pattern in files.
+-r (recursive) → Searches in all files and subdirectories.
+ "pattern" → The text or regular expression to search for.
+ /path/to/directory/ → The starting directory for the search.
+16.cat file1.txt file2.txt | uniq -d= duplicates are detected correctly.
+17cat file1.txt file2.txt | sort | uniq -c=Count occurrences of each line
+18.cat file1.txt file2.txt | uniq -u=Show all unique lines (non-duplicates)
+19.chmod 644 file.txt-Owner (user) → Read (r) & Write (w) → rw- (6)
+Group (group) → Read-only → r-- (4)
+Others (world) → Read-only → r-- (4)
+20.cp -r source_directory destination_directory-
+cp → The copy command in Linux.
+-r (recursive) → Ensures that all subdirectories and files inside source_directory are copied.
+ source_directory → The directory to copy.
+ destination_directory → The location where the copied directory will be placed.
+21.find /path/to/search -name "*.txt"-
+find /path/to/search → Starts searching from /path/to/search.
+-name "*.txt" → Looks for files with the .txt extension.
+22.chmod u+x file.txt-
+chmod → Command to change file permissions.
+ u → Affects the user (owner) of the file.
+ +x → Adds execute permission.
+ file.txt → The target file.
+22.  echo $PATH   =echo → Prints text to the terminal.
+PATH → Refers to the environment variable that stores a list of directories where the system searches for executables.
+
+
+
+
+
+

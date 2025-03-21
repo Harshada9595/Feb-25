@@ -1,0 +1,200 @@
+Q1>electricity billwith exception  handling 
+package com.ig;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ElecitricityExceptionDemo {
+	 String cname;
+	double unitConsume;
+	  double billamount=0.0;
+	
+	ElecitricityExceptionDemo(String cname,double unitConsume){
+		this.cname=cname;
+		this.unitConsume=unitConsume;
+	}
+	void calculatebillAmount() {
+		double remainingunit=unitConsume;
+		
+		if(remainingunit<0) {
+			throw new IllegalArgumentException("Electricity units cannot be negative.");
+		}
+		if(remainingunit <= 100) {
+			System.out.println("Electricity Bill Amount: ₹" +remainingunit*5);
+		}
+		else if(remainingunit<=300) {
+			System.out.println("Electricity Bill Amount: ₹" +100*5+(remainingunit*5)*7);
+		}
+		else if(remainingunit>300) {
+			System.out.println("Electricity Bill Amount: ₹" +100*5+200*7+(remainingunit*5)*10);
+		}
+		 System.out.println("Customer Name: " + cname);
+	       // System.out.println("Electricity Bill Amount: ₹" + billamount);
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		 Scanner sc=new Scanner(System.in);
+		
+		  System.out.println("Enter Employee Name=");
+		  String cname=sc.next();
+		  
+		  try {
+			  System.out.println("Eletricity units Consumed=");
+			  if(!sc.hasNextDouble()) {
+				 // throw new InputMismatchException("Enter Double number format only ");
+				  
+			  }
+			  Double unitConsume=sc.nextDouble();
+			  if(unitConsume<0) {
+				  throw new IllegalArgumentException("Electricity units cannot be negative.");
+			  }
+			  
+              ElecitricityExceptionDemo e1=new  ElecitricityExceptionDemo(cname, unitConsume);
+		      e1.calculatebillAmount();
+          }
+		  catch(InputMismatchException e) {
+			  System.out.println("Error::"+e.getMessage());//Error::null
+		  }
+		  catch(IllegalArgumentException e1) {
+			  System.out.println("Error::"+e1.getMessage());
+		  }
+		  finally {
+			  System.out.println("ok...");
+		  }
+
+}
+}
+/*
+ * Enter Employee Name=
+om
+Eletricity units Consumed=
+-75
+Error::Electricity units cannot be negative.
+ok...
+*/
+--------------------------------------------------------------------------------------------------
+Q2.Student marks and gread calculation with exception
+package com.ig;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class StudentException {
+	String name;
+	int roll;
+	double[] marks=new double[5]; 
+	char grade;
+	double average;
+	
+	public StudentException(String name, int roll, double[] marks) {
+		
+		this.name = name;
+		this.roll = roll;
+		this.marks = marks;
+	}
+	void calculateAverage() {
+		double total  =0.0;
+		for(double x: marks) {
+			total   += x;
+		}
+		 average = total / marks.length;
+		
+	}
+	void calculateGrade() {
+		if (average >= 90) {
+            grade = 'A';
+        } else if (average >= 80) {
+            grade = 'B';
+        } else if (average >= 70) {
+            grade = 'C';
+        } else if (average >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+		
+	}
+	void display() {
+		System.out.println("enter name="+name);
+		System.out.println("enter rollno="+name);
+		
+		
+		System.out.print("Marks: ");
+        for (double mark : marks) {
+            System.out.print(mark + " ");
+        }
+		System.out.println("enter average="+average);
+		System.out.println("Grade= "+grade);
+	}
+
+	
+
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	
+	
+		
+		try {
+			 System.out.print("Enter Student Name: ");
+	            String name = sc.nextLine();
+
+	            System.out.print("Enter Roll Number: ");
+	            int roll = sc.nextInt();
+
+	            double[] marks = new double[5];
+	            System.out.println("Enter marks for 5 subjects (0 to 100):");
+
+	            for (int i = 0; i < 5; i++) {
+	                // Check for non-numeric input before reading
+	                if (!sc.hasNextDouble()) {
+	                    throw new InputMismatchException("Invalid input! Enter a numeric value.");
+	                }
+
+	                double mark = sc.nextDouble();
+
+	                // Validate marks range
+	                if (mark < 0 || mark > 100) {
+	                    throw new IllegalArgumentException("Marks must be between 0 and 100.");
+	                }
+
+	                marks[i] = mark;
+	            }
+
+	            // Creating student object after valid input
+	            StudentException student = new StudentException(name, roll, marks);
+	            student.calculateAverage();
+	            student.calculateGrade();
+	            student.display();
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println("enter within 0 to 100!!!");
+		}
+		catch (InputMismatchException e) {
+            System.out.println("Error: " + e.getMessage());
+		}
+		finally {
+			System.out.println("ok...");
+			sc.close();
+		
+			
+		}
+
+	}
+
+}
+/*Enter Student Name: harshada
+Enter Roll Number: 5
+Enter marks for 5 subjects (0 to 100):
+78
+98
+88
+79
+89
+enter name=harshada
+enter rollno=harshada
+Marks: 78.0 98.0 88.0 79.0 89.0 enter average=86.4
+Grade= B
+ok...*/

@@ -1,0 +1,306 @@
+Q1>Room Volume Calculation
+package com.ig;
+
+class Room{
+	private double height;
+	private double width;
+	private double breadth;
+	
+	
+	Room(double height,double width,double breadth){
+		this.height= height;
+		this.width= width;
+		this.breadth= breadth;
+	}
+	
+	public double methodvolume() {
+		return height*width*breadth;
+		
+	
+}
+}
+	
+public class RoomDemo{
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Room r1=new Room(3,6,9);
+		System.out.println("Volume of room="+r1.methodvolume());
+
+	}
+
+}
+/*Volume of room=162.0*/
+---------------------------------------------------------------------------------------------------
+Q2>Student marks and Average
+package com.ig;
+
+public class Student {
+	private String name;
+
+	private int m1,m2,m3;
+	public String getName() {
+		return name;
+	}
+
+	public void setValues(String name, int m1,int m2,int m3) {
+		this.name = name;
+		this.m1 = m1;
+		this.m2 = m2;
+		this.m3 = m3;
+	}
+
+	
+	public int getStudentMarks() {
+		return m1+m2+m3;
+	}
+
+	
+	public double getAvg() {
+		return getStudentMarks()/3.0;
+	}
+
+	public void display() {
+		System.out.println("name="+name);
+		System.out.println("total marks="+getStudentMarks());
+		System.out.println("average marks="+getAvg());
+		
+	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 Student s1=new  Student ();
+		 s1.setValues("ram", 70, 67, 90);
+		 s1.display();
+
+	}
+
+}
+/*name=ram
+total marks=227
+average marks=75.66666666666667*/
+--------------------------------------------------------------------------------------------------
+Q3>Box area and Volume
+package com.ig;
+
+public class Box {
+	private double height,width,breadth;
+	public Box(double height, double width, double breadth) {
+		
+		this.height = height;
+		this.width = width;
+		this.breadth = breadth;
+	}
+	double getVolume() {
+		return breadth*height*width;
+	}
+	double getArea() {
+		return 2*( height*width+width*breadth+height*breadth);
+	}
+	void display() {
+		System.out.println("Box diememtion="+height+"x"+width+"x"+breadth);
+		System.out.println("Volume="+getVolume());
+		System.out.println("Surface area="+getArea());
+	}
+
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Box b1=new Box(3,4,5);
+		System.out.println("box=");
+		b1.display();
+		
+
+	}
+
+}
+/*box=
+Box diememtion=3.0x4.0x5.0
+Volume=60.0
+Surface area=94.0
+*/
+----------------------------------------------------------------------------------------------------
+Q4>Complex number operation
+package com.ig;
+
+public class Complexnumber {
+    private double real;
+    private double img;
+
+    public Complexnumber() {
+        this.real = 0;
+        this.img = 0;
+    }
+
+    public Complexnumber(double real) {
+        this.real = real;
+        this.img = 0;
+    }
+
+    public Complexnumber(double real, double img) {
+        this.real = real;
+        this.img = img;
+    }
+
+    public Complexnumber add(Complexnumber other) {
+        return new Complexnumber(this.real + other.real, this.img + other.img);
+    }
+
+    public Complexnumber multiply(Complexnumber other) {
+        double realPart = this.real * other.real - this.img * other.img;
+        double imgPart = this.real * other.img + this.img * other.real; // Fixed formula
+        return new Complexnumber(realPart, imgPart);
+    }
+
+    public void display() {
+        System.out.println(this.real + " + " + this.img + "i");
+    }
+
+    public static void main(String[] args) {
+        Complexnumber c1 = new Complexnumber(3, 2);
+        Complexnumber c2 = new Complexnumber(4, -2);
+
+        Complexnumber sum = c1.add(c2);
+        System.out.println("Sum =");
+        sum.display();
+
+        Complexnumber product = c1.multiply(c2); // Corrected function call
+        System.out.println("Multiplication =");
+        product.display();
+    }
+}
+
+/*Sum =
+7.0 + 0.0i
+Multiplication =
+16.0 + 2.0i*/
+--------------------------------------------------------------------------------------------------
+Q5> BMI calculator
+package com.ig;
+
+import java.util.Scanner;
+
+class BMI{
+	private double height;
+	private double weight;
+	
+	public BMI(double height, double weight) {
+		
+		this.height = height;
+		this.weight = weight;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	public double calculateBMI() {
+		return weight/(height*height);
+	}
+}
+
+
+public class BMIMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter height in meter=");
+		double height=sc.nextDouble();
+		
+		
+		
+		System.out.println("Enter weight in kg=");
+		double weight=sc.nextDouble();
+		 BMI b1=new  BMI(height,weight);
+		 double bmi=b1.calculateBMI();
+		 System.out.println("Yur BMI=\n"+bmi);
+
+	}
+
+}
+/*Enter height in meter=
+67
+Enter weight in kg=
+80
+Yur BMI=
+0.017821341055914458*/
+--------------------------------------------------------------------------------
+Q6. Electricity bill calculation
+package com.ig;
+
+import java.util.Scanner;
+
+ class ElecticityBill {
+	private String custname;
+	private double unitConsume;
+	private double billamount;
+	
+
+	public ElecticityBill(String custname, double unitConsume) {
+		
+		this.custname = custname;
+		this.unitConsume = unitConsume;
+		this.billamount = 0.0;
+	}
+
+	
+		public void electicityBillAmount() {
+			double remaningunit=unitConsume;
+				if( remaningunit<= 100) {
+					billamount=remaningunit*5;
+					
+				}
+				else if(remaningunit<=300) {
+					billamount=100*5+(remaningunit-100)*7;
+				}
+				else {
+					billamount=100*5+200*7+(remaningunit-300)*10;
+				}
+			
+		}
+		
+		public void show() {
+			System.out.println("Cutomer name="+custname);
+			System.out.println("Unit Consume="+unitConsume);
+			System.out.println("Bill amount="+billamount);
+		}
+	}
+public class CustomerBill{
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		 Scanner sc=new Scanner(System.in);
+		 System.out.println("Customer name=");
+		 String custname=sc.next();
+		 System.out.println("no of unit consume=");
+		 double unitConsume=sc.nextDouble ();
+		
+		  ElecticityBill e1 = new ElecticityBill(custname, unitConsume);
+		 e1.electicityBillAmount();
+		 e1.show();
+		 
+	}
+
+}
+/*Customer name=
+harshada
+no of unit consume=
+288
+Cutomer name=harshada
+Unit Consume=288.0
+Bill amount=1816.0
+*/

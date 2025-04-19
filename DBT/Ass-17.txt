@@ -1,0 +1,43 @@
+Assignment – 17
+Constraining the Values of your data.
+1) Create the Orders table so that all onum values as well as all combinations of
+cnum and snum are different from one another, and so that NULL values are
+excluded from the date field.
+=============================================================
+CREATE TABLE Orders (
+    Onum INT PRIMARY KEY,                     -- Unique order number
+    Amt DECIMAL(10,2),                        -- Order amount
+    Odate DATE NOT NULL,                      -- Order date (must not be NULL)
+    Cnum INT,                                 -- Customer number
+    Snum INT,                                 -- Salesperson number
+    CONSTRAINT unique_cnum_snum UNIQUE (Cnum, Snum)  -- Unique combination of customer and salesperson
+);
+
+==============================================================
+
+2) Create the Salespeople table so that the default commission is 10% with no
+NULLS permitted, snum is the primary key, and all names fall alphabetically
+between A and M, inclusive (assume all names will be uppercase).
+===========================================================
+CREATE TABLE Salespeople (
+    Snum INT PRIMARY KEY,                                -- Primary Key
+    Sname VARCHAR(50) NOT NULL,                          -- Salesperson name, cannot be NULL
+    City VARCHAR(50),                                    -- City (optional)
+    Comm DECIMAL(4,2) DEFAULT 0.10 NOT NULL,             -- Commission, default 10%, no NULLs
+    CHECK (Sname BETWEEN 'A' AND 'M')                    -- Name must be between A and M alphabetically
+);
+===========================================================
+3) Create the Orders table, making sure that the onum is greater than the cnum, and
+the cnum is greater that the snum. Allow no NULLS in any of these three fields.
+===========================================================
+CREATE TABLE Orders (
+    Onum INT NOT NULL,
+    Cnum INT NOT NULL,
+    Snum INT NOT NULL,
+    Odate DATE,
+    Amt DECIMAL(10,2),
+    PRIMARY KEY (Onum),
+    CHECK (Onum > Cnum),
+    CHECK (Cnum > Snum)
+);
+===========================================================

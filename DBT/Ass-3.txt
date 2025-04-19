@@ -1,0 +1,15 @@
+Assignment-03
+--------------------
+
+1) Does ANSI recognize the data type DATE?
+-Yes, ANSI SQL does recognise the DATE data type.
+-Date store a calender date(typically in the format 'YYYY-MM-DD' .
+
+-Date format='YYYY-MM-DD' is the standard in mysql ,so we converted 03-OCT-1990 to '1990-10-03'.
+
+2) Which subdivision of SQL is used to insert values in tables?
+-The subdivision of SQl is used to insert the valuesinto tables is called DML
+DML =INSERT
+              UPDATE
+              DELETE.
+              

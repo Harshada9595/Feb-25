@@ -1,0 +1,16 @@
+Assignment-02
+
+1) Which field of the Customers table is the primary key?
+Cnum is the primary key of the Customer table.
+
+2) What is the 4th column of the Customers table?
+Rating.
+
+3) What is another word for row? For column?
+row=record
+column=field
+
+4) Why isn’t it possible to see the first five rows of a table?
+by default ,mysql does not have a built in LIMIT like some other database for "first N rows " unless you specify it in your query.
+select * from CUTOMER limit 5;
+it shows upto 5 records.

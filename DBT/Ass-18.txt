@@ -1,0 +1,57 @@
+Create a table called Cityorders. This will contain the same onum, amt and snum
+fields as the Orders table, and the same cnum and city fields as the Customers
+table, so that each customer’s order will be entered into this table along with his
+or her city. Onum will be the primary key of Cityorders. All of the fields in
+Cityorders will be constrained to match the Customers and Orders 
+================================================================
+
+CREATE TABLE Cityorders (
+    Onum INT NOT NULL,                        -- Order number
+    Amt DECIMAL(10,2),                        -- Order amount
+    Snum INT NOT NULL,                        -- Salesperson number
+    Cnum INT NOT NULL,                        -- Customer number
+    City VARCHAR(50),                         -- Customer city
+    PRIMARY KEY (Onum),                       -- Onum is the primary key
+    FOREIGN KEY (Onum) REFERENCES Orders(Onum),  -- Foreign key from Orders
+    FOREIGN KEY (Cnum) REFERENCES Customers(Cnum), -- Foreign key from Customers
+    FOREIGN KEY (Snum) REFERENCES Salespeople(Snum) -- Foreign key from Salespeople
+);
+=============================================================
+Explanation:
+Fields:
+
+Onum INT NOT NULL → Order number from the Orders table, marked as NOT NULL.
+
+Amt DECIMAL(10,2) → Amount of the order (decimal type).
+
+Snum INT NOT NULL → Salesperson number.
+
+Cnum INT NOT NULL → Customer number (this links to the Customers table).
+
+City VARCHAR(50) → The city of the customer, which is also retrieved from the Customers table.
+
+Constraints:
+
+PRIMARY KEY (Onum): Ensures that the order number (Onum) is unique and serves as the primary key for the Cityorders table.
+
+FOREIGN KEY (Onum) REFERENCES Orders(Onum): This ensures that every Onum in the Cityorders table must correspond to an existing Onum in the Orders table.
+
+FOREIGN KEY (Cnum) REFERENCES Customers(Cnum): This ensures that every Cnum in the Cityorders table corresponds to an existing Cnum in the Customers table.
+
+FOREIGN KEY (Snum) REFERENCES Salespeople(Snum): This ensures that every Snum in the Cityorders table corresponds to an existing Snum in the Salespeople table.
+==============================================================
+Redefine the Orders table as follows:- add a new column called prev, which will
+identify, for each order, the onum of the previous order for that current customer.
+Implement this with a foreign key referring to the Orders table itself. The foreign
+key should refer as well to the cnum of the customer, providing a definite
+enforced link between the current order and the one referenced.
+
+
+ALTER TABLE Orders
+ADD COLUMN prev INT,  -- Add the 'prev' column to store the previous order number
+ADD CONSTRAINT fk_prev_order
+    FOREIGN KEY (prev) REFERENCES Orders(Onum)  -- Self-referencing foreign key on Onum
+    ON DELETE SET NULL,                         -- If the referenced order is deleted, set prev to NULL
+    ON UPDATE CASCADE;                          -- If the referenced order's Onum is updated, update prev accordingly.
+
+

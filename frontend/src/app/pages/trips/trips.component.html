@@ -1,0 +1,61 @@
+<div class="container mt-3">
+  <h2>Trips</h2>
+
+  <!-- Add new trip -->
+  <div class="mb-3 trip-form" #tripForm="ngForm">
+    <input [(ngModel)]="newTrip.destination" placeholder="Destination" class="form-control mb-2" name="destination" required />
+    <select [(ngModel)]="newTrip.driverId" class="form-select mb-2" name="driver" required>
+      <option [ngValue]="null" disabled>Select Driver</option>
+      <option *ngFor="let d of drivers" [ngValue]="d.id">{{ d.name }}</option>
+    </select>
+    <select [(ngModel)]="newTrip.vehicleId" class="form-select mb-2" name="vehicle" required>
+      <option [ngValue]="null" disabled>Select Vehicle</option>
+      <option *ngFor="let v of vehicles" [ngValue]="v.id">{{ v.model }} ({{ v.licensePlate }})</option>
+    </select>
+    <select [(ngModel)]="newTrip.status" class="form-select mb-2" name="status" required>
+      <option value="Pending">Pending</option>
+      <option value="Active">Active</option>
+      <option value="Completed">Completed</option>
+    </select>
+    <button class="btn btn-primary" (click)="addTrip()" [disabled]="!tripForm.form.valid">Add Trip</button>
+  </div>
+
+  <hr />
+
+  <!-- Trip list -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Destination</th>
+        <th>Driver</th>
+        <th>Vehicle</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trip of trips">
+        <td>{{ trip.destination }}</td>
+        <td>{{ getDriverName(trip.driverId) }}</td>
+        <td>{{ getVehicleModel(trip.vehicleId) }}</td>
+        <td>{{ trip.status }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" (click)="editTrip(trip)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteTrip(trip.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Edit trip form -->
+  <div *ngIf="selectedTrip" class="mt-3 trip-form" #editForm="ngForm">
+    <h3>Edit Trip</h3>
+    <input [(ngModel)]="selectedTrip.destination" class="form-control mb-2" name="editDestination" required />
+    <select [(ngModel)]="selectedTrip.status" class="form-select mb-2" name="editStatus" required>
+      <option value="Pending">Pending</option>
+      <option value="Active">Active</option>
+      <option value="Completed">Completed</option>
+    </select>
+    <button class="btn btn-success" (click)="updateTrip()" [disabled]="!editForm.form.valid">Update Trip</button>
+  </div>
+</div>

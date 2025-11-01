@@ -20,7 +20,7 @@ export class TripComponent implements OnInit {
   drivers: Driver[] = [];
   vehicles: Vehicle[] = [];
 
-  // Initialize driverId/vehicleId to null to correctly bind to the "Select Driver" option
+
   newTrip: Partial<Trip> = { destination: '', driverId: null, vehicleId: null, status: 'Pending' };
   selectedTrip: Trip | null = null;
 
@@ -41,18 +41,17 @@ export class TripComponent implements OnInit {
   }
 
   loadDrivers(): void {
-    // Only load available drivers for the new trip form
+
     this.driverService.getAvailableDrivers().subscribe((data) => { this.drivers = data; });
   }
 
   loadVehicles(): void {
-    // Only load available vehicles for the new trip form
+    
     this.vehicleService.getAvailableVehicles().subscribe((data) => { this.vehicles = data; });
   }
 
   addTrip(): void {
-    // The DTO requires non-nullable IDs, so we use 0 if null is selected, 
-    // although backend DTO uses int which implies non-nullable anyway.
+    
     const tripPayload = {
       destination: this.newTrip.destination,
       driverId: this.newTrip.driverId || 0, 
